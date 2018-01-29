@@ -2,41 +2,100 @@ public class MyArrayList {
     private Cow[] elems;
     private int size;
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public MyArrayList() {
-        // TODO
+        elems = new Cow[10];
+        size = 0;
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public MyArrayList(int capacity) {
-        // TODO
+        elems = new Cow[capacity];
+        size = 0;
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)*
     public void add(Cow c) {
-        // TODO
+        if (elems.length == size) {
+            grow();
+        }
+
+        elems[size] = c;
+
+        size++;
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public int size() {
-        // TODO
-        return -1;
+        return size;
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(1)
     public Cow get(int index) {
-        // TODO
-        return null;
+        if (elems[index] == null) {
+            throw new IndexOutOfBoundsException("No cow exists at the provided index.");
+        }
+
+        return elems[index];
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(N)
     public Cow remove(int index) {
-        // TODO
-        return null;
+
+        if (index >= elems.length || index < 0) {
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException");
+        }
+        else if (elems[index] == null) {
+            throw new IndexOutOfBoundsException("No cow exists at the provided index.");
+        }
+
+        Cow removedCow = elems[index];
+        elems[index] = null;
+        
+        for (int i = index + 1; i < size; i++) {
+            elems[i - 1] = elems[i];
+        }
+        
+        size--;
+
+        if (size >=4 && size < 0.25 * elems.length) {
+            reduce();
+        }
+
+        return removedCow;
     }
 
-    // TODO: Runtime: O(?)
+    // Runtime: O(N)
     public void add(int index, Cow c) {
-        // TODO
+
+        if (elems.length == size) {
+            grow();
+        }
+
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException");
+        }
+
+        for (int i = size + 1; i > index; i--) {
+            elems[i] = elems[i - 1];
+        }
+
+        elems[index] = c;
+
+        size++;
+    }
+
+    // Runtime: O(N)
+    public void grow() {
+        Cow[] temp = new Cow[elems.length * 2];
+        System.arraycopy(elems, 0, temp, 0, size);
+        elems = temp;
+    }
+
+    // Runtime: O(N)
+    public void reduce() {
+        Cow[] temp = new Cow[elems.length / 2];
+        System.arraycopy(elems, 0, temp, 0, size);
+        elems = temp;
     }
 }
