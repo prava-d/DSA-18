@@ -1,6 +1,4 @@
-package your_code;
-
-public class MyLinkedList {
+ public class MyLinkedList {
 
     private Node head;
     private Node tail;
@@ -19,7 +17,9 @@ public class MyLinkedList {
     }
 
     public MyLinkedList() {
-        // TODO
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     public int size() {
@@ -39,30 +39,117 @@ public class MyLinkedList {
     }
 
     public void addLast(Chicken c) {
-        // TODO
+        if (size == 0) {
+            Node newNode = new Node(c, null, null);
+            head = newNode;
+            tail = newNode;
+        }
+        else {
+            Node newNode = new Node(c, tail, null);
+            tail.next = newNode;
+            tail = newNode;
+        }
+        
+        size++;
     }
 
     public void addFirst(Chicken c) {
-        // TODO
+        if (size == 0) {
+            Node newNode = new Node(c, null, null);
+            head = newNode;
+            tail = newNode;
+        }
+        else {
+            Node newNode = new Node(c, null, head);
+            head.prev = newNode;
+            head = newNode;
+        }
+        
+        size++;
     }
 
     public Chicken get(int index) {
-        // TODO
-        return null;
+        if (index >= size) {
+            return null;
+        }
+        
+        Node currNode = head;
+        
+        for (int i = 0; i < index; i++) {
+            currNode = currNode.next;
+        }
+            
+        return currNode.val;
     }
 
     public Chicken remove(int index) {
-        // TODO
-        return null;
+        if (index >= size || size == 0) {
+            return null;
+        }
+        else if (size == 1) {
+            return head.val;
+        }
+        else if (index == 0) {
+            Chicken tempChicken = removeFirst();
+            return tempChicken;
+        }
+        else if (index == size - 1) {
+            Chicken tempChicken = removeLast();
+            return tempChicken;
+        }
+        else {
+            Node currNode = head;
+            
+            for (int i = 0; i < index; i++) {
+                currNode = currNode.next;
+            }
+            
+            Chicken tempChicken = currNode.val;
+            currNode.next.prev = currNode.prev;
+            currNode.prev.next = currNode.next;
+            
+            size--;
+            return tempChicken;
+        }
     }
 
     public Chicken removeFirst() {
-        // TODO
-        return null;
+        if (size == 0) {
+            return null;
+        }
+        else if (size == 1) {
+            Chicken tempChicken = head.val;
+            head = null;
+            tail = null;
+            size--;
+            return tempChicken;
+        }
+        else {
+            Chicken tempChicken = head.val;
+            head = head.next;
+            head.prev = null;
+            size--;
+            return tempChicken;
+        }
     }
 
     public Chicken removeLast() {
-        // TODO
-        return null;
+        if (size == 0) {
+            return null;
+        }
+        else if (size == 1) {
+            Chicken tempChicken = head.val;
+            head = null;
+            tail = null;
+            size--;
+            return tempChicken;
+        }
+        else {
+            Chicken tempChicken = tail.val;
+            tail = tail.prev;
+            tail.next = null;
+            size--;
+            return tempChicken;
+        }
     }
 }

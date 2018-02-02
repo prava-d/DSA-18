@@ -1,7 +1,3 @@
-package your_code;
-
-import ADTs.QueueADT;
-
 import java.util.LinkedList;
 
 /**
