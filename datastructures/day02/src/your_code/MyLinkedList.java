@@ -14,6 +14,12 @@
             this.prev = prev;
             this.next = next;
         }
+
+        private Node(Chicken d) {
+            this.val = d;
+            prev = null;
+            next = null;
+        }
     }
 
     public MyLinkedList() {
