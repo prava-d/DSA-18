@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=MyArrayList
+comment1.params=
+comment1.target=MyArrayList()
+comment2.params=capacity
+comment2.target=MyArrayList(int)
+comment3.params=c
+comment3.target=void\ add(Cow)
+comment4.params=
+comment4.target=int\ size()
+comment5.params=index
+comment5.target=Cow\ get(int)
+comment6.params=index
+comment6.target=Cow\ remove(int)
+comment7.params=index\ c
+comment7.target=void\ add(int,\ Cow)
+comment8.params=
+comment8.target=void\ grow()
+comment9.params=
+comment9.target=void\ reduce()
+numComments=10

@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Chicken
+comment1.params=name\ age\ color
+comment1.target=Chicken(java.lang.String,\ int,\ java.lang.String)
+comment2.params=o
+comment2.target=boolean\ equals(java.lang.Object)
+numComments=3

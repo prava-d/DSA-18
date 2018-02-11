@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=StackADT
+comment0.text=\n\ The\ Stack\ Abstract\ Data\ Type,\ with\ the\ following\ methods\:\n\ push(T\ e)\ puts\ an\ element\ on\ top\ of\ the\ stack\n\ pop()\ removes\ the\ element\ on\ top\ of\ the\ stack\n\ isEmpty()\ checks\ if\ the\ stack\ size\ is\ zero.\n\ peek()\ returns\ element\ on\ top\ of\ the\ stack\n\n\ @param\ <T>\n
+comment1.params=e
+comment1.target=void\ push(java.lang.Object)
+comment2.params=
+comment2.target=java.lang.Object\ pop()
+comment3.params=
+comment3.target=boolean\ isEmpty()
+comment4.params=
+comment4.target=java.lang.Object\ peek()
+numComments=5

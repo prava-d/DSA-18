@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=HelloWorld
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=void\ debugPractice()
+comment2.text=Use\ this\ function\ to\ play\ around\ with\ IntelliJ's\ debugger
+numComments=3

@@ -58,7 +58,7 @@ public class MyArrayList {
         
         size--;
 
-        if (size >=4 && size < 0.25 * elems.length) {
+        if (size > 1 && size < 0.25 * elems.length) {
             reduce();
         }
 

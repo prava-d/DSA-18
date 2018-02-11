@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Problems
+comment1.params=A\ k
+comment1.target=java.util.List\ removeKDigits(int[],\ int)
+comment2.params=n
+comment2.target=boolean\ isPalindrome(Problems.Node)
+comment3.params=s
+comment3.target=java.lang.String\ infixToPostfix(java.lang.String)
+numComments=4

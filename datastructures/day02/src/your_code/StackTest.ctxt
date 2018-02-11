@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=StackTest
+comment1.params=
+comment1.target=void\ setUp()
+comment1.text=\n\ @throws\ Exception\n
+comment2.params=
+comment2.target=void\ testStack()
+comment2.text=\n\ Tests\ functionality\ of\ the\ stack\n
+comment3.params=
+comment3.target=void\ testMax()
+comment3.text=\n\ Tests\ maxElement\ functionality\n
+numComments=4

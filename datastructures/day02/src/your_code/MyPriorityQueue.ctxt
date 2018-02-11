@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=MyPriorityQueue
+comment0.text=\n\ An\ implementation\ of\ a\ priority\ Queue\n
+comment1.params=
+comment1.target=MyPriorityQueue()
+comment2.params=item
+comment2.target=void\ enqueue(int)
+comment3.params=
+comment3.target=int\ dequeueMax()
+comment3.text=\n\ Return\ and\ remove\ the\ largest\ item\ on\ the\ queue.\n
+numComments=4

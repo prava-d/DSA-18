@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=MyQueue
+comment0.text=\n\ An\ implementation\ of\ the\ Queue\ interface.\n
+comment1.params=
+comment1.target=MyQueue()
+comment2.params=item
+comment2.target=void\ enqueue(java.lang.Object)
+comment3.params=
+comment3.target=java.lang.Object\ dequeue()
+comment4.params=
+comment4.target=boolean\ isEmpty()
+comment5.params=
+comment5.target=java.lang.Object\ front()
+numComments=6

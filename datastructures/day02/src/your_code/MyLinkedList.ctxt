@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=MyLinkedList
+comment1.params=
+comment1.target=MyLinkedList()
+comment10.params=
+comment10.target=Chicken\ removeFirst()
+comment11.params=
+comment11.target=Chicken\ removeLast()
+comment2.params=
+comment2.target=int\ size()
+comment3.params=
+comment3.target=boolean\ isEmpty()
+comment4.params=c
+comment4.target=void\ add(Chicken)
+comment5.params=
+comment5.target=Chicken\ pop()
+comment6.params=c
+comment6.target=void\ addLast(Chicken)
+comment7.params=c
+comment7.target=void\ addFirst(Chicken)
+comment8.params=index
+comment8.target=Chicken\ get(int)
+comment9.params=index
+comment9.target=Chicken\ remove(int)
+numComments=12
