@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class MergeSort extends SortAlgorithm {
 
@@ -9,16 +10,22 @@ public class MergeSort extends SortAlgorithm {
      * Use Insertion Sort if the length of the array is <= INSERTION_THRESHOLD
      *
      * TODO
-     * Best-case runtime:
-     * Worst-case runtime:
-     * Average-case runtime:
+     * Best-case runtime: O(nlogn)
+     * Worst-case runtime: O(nlogn)
+     * Average-case runtime: O(nlogn)
      *
-     * Space-complexity:
+     * Space-complexity: O(n)
      */
     @Override
     public int[] sort(int[] array) {
-        // TODO
-        return new int[0];
+        if (array.length <= 1) {
+            return array;
+        }
+        else {
+            int[] L = sort(Arrays.copyOfRange(array, 0, array.length/2));
+            int[] R = sort(Arrays.copyOfRange(array, array.length/2, array.length));
+            return merge(L, R);
+        }
     }
 
     /**
@@ -26,8 +33,39 @@ public class MergeSort extends SortAlgorithm {
      * all elements in a and b. A test for this method is provided in `SortTest.java`
      */
     public int[] merge(int[] a, int[] b) {
-        // TODO
-        return new int[0];
+        int[] r = new int[a.length + b.length];
+        int a_idx = 0;
+        int b_idx = 0;
+        int r_idx = 0;
+
+        while (r_idx < r.length) {
+            if (a_idx < a.length && b_idx < b.length) {
+                if (a[a_idx] <= b[b_idx]) {
+                    r[r_idx] = a[a_idx];
+                    a_idx++;
+                    r_idx++;
+                }
+                else {
+                    r[r_idx] = b[b_idx];
+                    b_idx++;
+                    r_idx++;
+                }
+            }
+
+            else if (a_idx < a.length && !(b_idx < b.length)) {
+                r[r_idx] = a[a_idx];
+                a_idx++;
+                r_idx++;
+            }
+
+            else if (!(a_idx < a.length) && b_idx < b.length) {
+                r[r_idx] = b[b_idx];
+                b_idx++;
+                r_idx++;
+            }
+        }
+
+        return r;
     }
 
 }
