@@ -37,6 +37,26 @@ public class NQueens {
         return false;
     }
 
+    public static boolean checkRow(char[][] board, int r) {
+
+        for (int i = 0; i < board[0].length; i++) {
+            if (board[i][r] == 'Q') return true;
+        }
+        return false;
+    }
+
+    public static boolean checkCol(char[][] board, int c) {
+
+        for (int i = 0; i < board.length; i++) {
+            if (board[c][i] == 'Q') return true;
+        }
+        return false;
+    }
+
+    public static boolean checkValid(char[][] board, int r, int c) {
+
+        return !(checkDiagonal(board, r, c) && checkRow(board, r) && checkCol(board, c));
+    }
 
     /**
      * Creates a deep copy of the input array and returns it
@@ -47,6 +67,30 @@ public class NQueens {
             System.arraycopy(A[i], 0, B[i], 0, A[0].length);
         return B;
     }
+
+    public boolean solve(char[][] board) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; i < board[0].length; j++) {
+                if (board[i][j] == '.') {
+                    board[i][j] = 'Q';
+                    if (checkValid(board, j, i)) {
+                        if (solve(board)) {
+                            return true;
+                        }
+                        else {
+                            board[i][j] = '.';
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
 
 
     public static List<char[][]> nQueensSolutions(int n) {

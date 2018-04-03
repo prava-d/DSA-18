@@ -1,6 +1,4 @@
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Permutations {
 
@@ -17,9 +15,16 @@ public class Permutations {
     }
 
     public static List<List<Integer>> permutations(List<Integer> A) {
-        // TODO
         List<List<Integer>> permutations = new LinkedList<>();
+        //return permutations;
+
+        Set<Integer> Aset = new HashSet<Integer>(A);
+
+        backtrack(new LinkedList<Integer>(), Aset, permutations);
+
+        //System.out.println(permutations);
         return permutations;
+
     }
 
 }

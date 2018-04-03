@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Skyline {
 
@@ -23,7 +21,20 @@ public class Skyline {
 
     // Given an array of buildings, return a list of points representing the skyline
     public static List<Point> skyline(Building[] B) {
-        // TODO
+        int low = 0;
+        int high = B.length - 1;
+
+        int mid = (low + high) / 2;
+
+        if (low == high) {
+
+        }
+
+        List<Point> leftS = skyline(Arrays.copyOfRange(B, low, mid));
+        List<Point> leftR = skyline(Arrays.copyOfRange(B, low, mid));
+
+
+
         return new ArrayList<>();
     }
 }
