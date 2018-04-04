@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,10 +14,12 @@ public class Board {
     // Create a 2D array representing the solved board state
     private int[][] goal = {{}};
 
+
     /*
      * Set the global board size and tile state
      */
     public Board(int[][] b) {
+
         // TODO: Your code here
     }
 
@@ -42,12 +45,19 @@ public class Board {
      */
     public boolean isGoal() {
         // for every value in tiles, check that the one to the right is in order
-        int count = 0;
-        for(int i = 0; i<size(); i++){
-            for(int p = 0; p <size(); p++){
+        int[][] d = tiles;
+        int count = 1;
+        int leng = d.length;
+        for(int i = 0; i<leng; i++){
+            for(int p = 0; p <leng; p++){
                 // checks all the rows: i
                 // with each colm: p
-                if(tiles[p][i] != count){
+                if(i == leng-1 && p == leng-1){
+                    if(d[i][p] == 0){
+                        return true;
+                    }
+                }
+                if(d[i][p] != count){
                     return false;
                 }
                 count++;
@@ -65,11 +75,38 @@ public class Board {
         return false;
     }
 
+
+
+    public static void visualize(int[][] b){
+        int s = b.length;
+        for(int i = 0; i<b.length; i++){
+            for(int p = 0; p <b.length; p++){
+                if(p == b.length-1){
+                    System.out.println(b[i][p]);
+                }else{
+                    System.out.print(b[i][p]);
+                }
+            }
+        }
+    }
+
+
     /*
      * Return all neighboring boards in the state tree
      */
     public Iterable<Board> neighbors() {
-        // For each board, make a copy, change the one piece, move on
+        // Need a way to get the target node
+
+        // make a list of boards
+        Board[] boardsNeigh = {};
+        int numNeighbors =0;//
+        int[] movements = {1,1,-1,-1};
+//        for(int i = 1; i <= 4; i++){
+//            if(board[])
+//        }
+//        // For each board, make a copy, change the one piece, move on
+//        Iterable<Board> OtherBoards =  boardsNeigh.iterator();
+//
 
         return null;
     }
@@ -102,6 +139,8 @@ public class Board {
     public static void main(String[] args) {
         // DEBUG - Your solution can include whatever output you find useful
         int[][] initState = {{1, 2, 3}, {4, 0, 6}, {7, 8, 5}};
+        int[][] initState2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
+        visualize(initState2);
         Board board = new Board(initState);
 
         System.out.println("Size: " + board.size());
