@@ -41,8 +41,19 @@ public class Board {
      * Compare the current state to the goal state
      */
     public boolean isGoal() {
-        // TODO: Your code here
-        return false;
+        // for every value in tiles, check that the one to the right is in order
+        int count = 0;
+        for(int i = 0; i<size(); i++){
+            for(int p = 0; p <size(); p++){
+                // checks all the rows: i
+                // with each colm: p
+                if(tiles[p][i] != count){
+                    return false;
+                }
+                count++;
+            }
+        }
+        return true;
     }
 
     /*
@@ -58,7 +69,8 @@ public class Board {
      * Return all neighboring boards in the state tree
      */
     public Iterable<Board> neighbors() {
-        // TODO: Your code here
+        // For each board, make a copy, change the one piece, move on
+
         return null;
     }
 
