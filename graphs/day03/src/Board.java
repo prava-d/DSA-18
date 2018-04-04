@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Board definition for the 8 Puzzle challenge
@@ -17,7 +16,9 @@ public class Board {
      * Set the global board size and tile state
      */
     public Board(int[][] b) {
-        // TODO: Your code here
+        tiles = b;
+        n = tiles.length^2;
+        // TODO: DONE?
     }
 
     /*
@@ -25,8 +26,8 @@ public class Board {
      (equal to 3 for 8 puzzle, 4 for 15 puzzle, 5 for 24 puzzle, etc)
      */
     private int size() {
-        // TODO: Your code here
-        return 0;
+        return tiles.length;
+        // TODO: DONE?
     }
 
     /*
