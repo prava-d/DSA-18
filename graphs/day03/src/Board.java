@@ -13,6 +13,7 @@ public class Board {
 
     private int n;
     public int[][] tiles;
+    int[] target = {0,0};
 
     //TODO
     // Create a 2D array representing the solved board state
@@ -26,22 +27,36 @@ public class Board {
 
         tiles = b;
         n = tiles.length^2;
+        setTarget();
+    }
+
+    public void setTarget() {
+        for(int i = 0; i<size(); i++){
+            for(int p = 0; p <size(); p++){
+                // checks all the rows: i
+                // with each colm: p
+
+                if(tiles[i][p] == 0){
+                    this.target[0]= i;
+                    this.target[1] = p;
+                }
+            }
+        }
     }
 
     /*
-     * Size of the board 
-     (equal to 3 for 8 puzzle, 4 for 15 puzzle, 5 for 24 puzzle, etc)
-     */
+         * Size of the board
+         (equal to 3 for 8 puzzle, 4 for 15 puzzle, 5 for 24 puzzle, etc)
+         */
     private int size() {
         return tiles.length;
-        // TODO: DONE?
     }
 
     /*
      * Sum of the manhattan distances between the tiles and the goal
      */
     public int manhattan() {
-        // TODO: Your code here
+        // TODO:int[][] target Your code here
         return 0;
     }
 
@@ -57,7 +72,7 @@ public class Board {
             for(int p = 0; p <leng; p++){
                 // checks all the rows: i
                 // with each colm: p
-                if(i == leng-1 && p == leng-1){
+                if(i== leng-1 && p == leng-1){
                     if(d[i][p] == 0){
                         return true;
                     }
@@ -103,25 +118,59 @@ public class Board {
         // Need a way to get the target node
 
         // make a list of boards
-        Board[] boardsNeigh = {};
+        ArrayList<Board> boardsNeigh = new ArrayList<Board>();
         int numNeighbors =0;//
-        int[] movements = {1,1,-1,-1};
-//        for(int i = 1; i <= 4; i++){
-//            if(board[])
-//        }
+        int[] movements = {1,-1,1,-1};
+        for(int i = 0; i < 4; i++) {
+            int x = target[0];
+            int y = target[1];
+            if(i < 2){
+                if (x + movements[i] < size() && x + movements[i] >= 0){
+                    // This is inbounds
+                    //FIND NEGHBOR
+                    int[][] tempBoard = copyOf(tiles);
+                    tempBoard[x][y] = tempBoard[x + movements[i]][y];
+                    tempBoard[x + movements[i]][y] = 0;
+                    Board Tboard = new Board(tempBoard);
+                    boardsNeigh.add(Tboard);
+                }
+            }else{
+                if (y + movements[i] < size() && y + movements[i] >= 0){
+                    // This is inbounds
+                    int[][] tempBoard = copyOf(tiles);
+                    tempBoard[x][y] = tempBoard[x][y + movements[i] ];
+                    tempBoard[x][y + movements[i] ] = 0;
+                    Board Tboard = new Board(tempBoard);
+                    boardsNeigh.add(Tboard);
+                }
+            }
+
+        }
 //        // For each board, make a copy, change the one piece, move on
 //        Iterable<Board> OtherBoards =  boardsNeigh.iterator();
 //
 
-        return null;
+        return boardsNeigh;
     }
 
     /*
      * Check if this board equals a given board state
      */
+
+
+    private static int[][] copyOf(int[][] A) {
+        int[][] B = new int[A.length][A[0].length];
+        for (int i = 0; i < A.length; i++)
+            System.arraycopy(A[i], 0, B[i], 0, A[0].length);
+        return B;
+    }
+
+
     @Override
     public boolean equals(Object x) {
-        // Check if the board equals an input Board object
+        // Check if the board equals an input Board object            if(x){
+//
+//            }
         if (x == this) return true;
         if (x == null) return false;
         if (!(x instanceof Board)) return false;
@@ -143,7 +192,7 @@ public class Board {
 
     public static void main(String[] args) {
         // DEBUG - Your solution can include whatever output you find useful
-        int[][] initState = {{1, 2, 3}, {4, 0, 6}, {7, 8, 5}};
+        int[][] initState = {{1, 2, 3}, {4, 5, 6}, {7, 0, 5}};
         int[][] initState2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
         visualize(initState2);
         Board board = new Board(initState);
