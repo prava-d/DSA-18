@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class NQueens {
 
 
     /**
-     * Checks the 45° and 135° diagonals for an existing queen. For example, if the board is a 5x5
+     * Checks the 45° and 1s35° diagonals for an existing queen. For example, if the board is a 5x5
      * and you call checkDiagonal(board, 3, 1), The positions checked for an existing queen are
      * marked below with an `x`. The location (3, 1) is marked with an `o`.
      *
@@ -30,33 +29,13 @@ public class NQueens {
         y = r - 1;
         x = c + 1;
         while (y >= 0 && x < board[0].length) {
-            if (board[y][x] == 'Q') return true;
+            if (board[y][x] == 'Q') return false;
             x++;
             y--;
         }
-        return false;
+        return true;
     }
 
-    public static boolean checkRow(char[][] board, int r) {
-
-        for (int i = 0; i < board[0].length; i++) {
-            if (board[i][r] == 'Q') return true;
-        }
-        return false;
-    }
-
-    public static boolean checkCol(char[][] board, int c) {
-
-        for (int i = 0; i < board.length; i++) {
-            if (board[c][i] == 'Q') return true;
-        }
-        return false;
-    }
-
-    public static boolean checkValid(char[][] board, int r, int c) {
-
-        return !(checkDiagonal(board, r, c) && checkRow(board, r) && checkCol(board, c));
-    }
 
     /**
      * Creates a deep copy of the input array and returns it
@@ -68,34 +47,40 @@ public class NQueens {
         return B;
     }
 
-    public boolean solve(char[][] board) {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; i < board[0].length; j++) {
-                if (board[i][j] == '.') {
-                    board[i][j] = 'Q';
-                    if (checkValid(board, j, i)) {
-                        if (solve(board)) {
-                            return true;
-                        }
-                        else {
-                            board[i][j] = '.';
-                        }
-                    }
-                }
-
-                return false;
-            }
+    public static List<char[][]> solve(char[][] ans, int r, int[] cols, List<char[][]> current) {
+        if (r == ans.length) {
+            current.add(copyOf(ans));
+            return current;
         }
 
-        return true;
+        for (int i = 0; i < ans.length; i++) {
+            if (!checkDiagonal(ans, r, i) && cols[i] == 0) {
+                cols[i] = 1;
+                ans[r][i] = 'Q';
+                solve(ans, r+1, cols, current);
+                ans[r][i] = '.';
+                cols[i] = 0;
+
+            }
+        }
+        return current;
 
     }
 
 
 
     public static List<char[][]> nQueensSolutions(int n) {
-        // TODO
+
         List<char[][]> answers = new ArrayList<>();
+        char[][] qs = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                qs[i][j] = '.';
+            }
+        }
+
+        int[] cols = new int[n];
+        answers = solve(qs, 0, cols, answers);
         return answers;
     }
 
