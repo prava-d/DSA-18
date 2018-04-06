@@ -10,6 +10,7 @@ public class Solver {
     public int minMoves = -1;
     private State solutionState;
     private boolean solved = false;
+    //private State root;
 
     /**
      * State class to make the cost calculations simple
@@ -22,10 +23,13 @@ public class Solver {
         public int cost; // equal to f-cost in A*
         private State prev;
 
+
+
         public State(Board board, int moves, State prev) {
             this.board = board;
             this.moves = moves;
             this.prev = prev;
+
             // TODO
             cost = 0;
         }
@@ -39,12 +43,14 @@ public class Solver {
         }
     }
 
+
+
+
     /*
      * Return the root state of a given state
      */
     private State root(State state) {
-        // TODO: Your code here
-        return null;
+        return null;//this.root;
     }
 
     /*
@@ -53,16 +59,56 @@ public class Solver {
      * and a identify the shortest path to the the goal state
      */
     public Solver(Board initial) {
-        // TODO: Your code here
+        if(isSolvable(initial)){
+            ArrayList<Board> open = new ArrayList<Board>();
+            ArrayList<Board> closed = new ArrayList<Board>();
+            open.add(initial);
+
+            while(open.size()> 0){
+                Board curr = open.remove(0);
+                for(Board neighbor : curr.neighbors()){
+                    if(neighbor.isGoal()){
+                        //  This is the solution
+                        return;
+                    }else{
+                        int mDist = neighbor.manhattan();
+                        boolean ignore = false;
+                        for(int b = 0; b < open.size(); b++){
+                            if(neighbor.equals(open.get(b)) && open.get(b).manhattan() < mDist){
+                                //Ignore
+                                ignore = true;
+                            }
+                        }
+                        for(int b = 0; b < closed.size(); b++){
+                            if(neighbor.equals(closed.get(b)) && closed.get(b).manhattan() < mDist){
+                                //Ignore
+                                ignore = true;
+                            }
+                        }
+                        if(!ignore){
+                            open.add(neighbor);
+
+                        }
+
+                    }
+                }
+
+            }
+
+        }
     }
 
     /*
      * Is the input board a solvable state
      * Research how to check this without exploring all states
      */
-    public boolean isSolvable() {
-        // TODO: Your code here
-        return false;
+    public boolean isSolvable(Board initial) {
+        if(initial.solvable()){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     /*
@@ -90,6 +136,7 @@ public class Solver {
         Board initial = new Board(initState);
 
         Solver solver = new Solver(initial);
+
     }
 
 
