@@ -1,4 +1,10 @@
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 import java.util.*;
+
 
 /**
  * Board definition for the 8 Puzzle challenge
@@ -13,14 +19,33 @@ public class Board {
     // Create a 2D array representing the solved board state
     private int[][] goal = {{}};
 
+
     /*
      * Set the global board size and tile state
      */
     public Board(int[][] b) {
+
         tiles = b;
         n = tiles.length^2;
         setTarget();
+<<<<<<< HEAD
         // TODO: DONE?
+=======
+    }
+
+    public void setTarget() {
+        for(int i = 0; i<size(); i++){
+            for(int p = 0; p <size(); p++){
+                // checks all the rows: i
+                // with each colm: p
+
+                if(tiles[i][p] == 0){
+                    this.target[0]= i;
+                    this.target[1] = p;
+                }
+            }
+        }
+>>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
     }
 
     public void setTarget() {
@@ -38,12 +63,11 @@ public class Board {
     }
 
     /*
-     * Size of the board 
-     (equal to 3 for 8 puzzle, 4 for 15 puzzle, 5 for 24 puzzle, etc)
-     */
+         * Size of the board
+         (equal to 3 for 8 puzzle, 4 for 15 puzzle, 5 for 24 puzzle, etc)
+         */
     private int size() {
         return tiles.length;
-        // TODO: DONE?
     }
 
 
@@ -52,6 +76,7 @@ public class Board {
      * Sum of the manhattan distances between the tiles and the goal
      */
     public int manhattan() {
+<<<<<<< HEAD
         // TODO: DONE?
         int sumDist = 0;
         for (int i = 0; i < tiles.length; i++) {
@@ -65,13 +90,20 @@ public class Board {
             }
         }
         return sumDist;
+=======
+        // TODO:int[][] target Your code here
+        return 0;
+>>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
     }
 
     /*
      * Compare the current state to the goal state
      */
     public boolean isGoal() {
+<<<<<<< HEAD
         // TODO: DONE?
+=======
+>>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
         // for every value in tiles, check that the one to the right is in order
         int[][] d = tiles;
         int count = 1;
@@ -92,6 +124,7 @@ public class Board {
             }
         }
         return true;
+<<<<<<< HEAD
     }
 
     public int numInversions(int[] arr) {
@@ -117,6 +150,8 @@ public class Board {
         }
 
         return oneDarr;
+=======
+>>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
     }
 
     /*
@@ -135,11 +170,30 @@ public class Board {
         }
     }
 
+
+
+    public static void visualize(int[][] b){
+        int s = b.length;
+        for(int i = 0; i<b.length; i++){
+            for(int p = 0; p <b.length; p++){
+                if(p == b.length-1){
+                    System.out.println(b[i][p]);
+                }else{
+                    System.out.print(b[i][p]);
+                }
+            }
+        }
+    }
+
+
     /*
      * Return all neighboring boards in the state tree
      */
     public Iterable<Board> neighbors() {
+<<<<<<< HEAD
         // TODO: DONE?
+=======
+>>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
         // Need a way to get the target node
 
         // make a list of boards
@@ -176,6 +230,7 @@ public class Board {
 //
 
         return boardsNeigh;
+<<<<<<< HEAD
 
     }
 
@@ -184,14 +239,28 @@ public class Board {
         for (int i = 0; i < A.length; i++)
             System.arraycopy(A[i], 0, B[i], 0, A[0].length);
         return B;
+=======
+>>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
     }
 
     /*
      * Check if this board equals a given board state
      */
+
+
+    private static int[][] copyOf(int[][] A) {
+        int[][] B = new int[A.length][A[0].length];
+        for (int i = 0; i < A.length; i++)
+            System.arraycopy(A[i], 0, B[i], 0, A[0].length);
+        return B;
+    }
+
+
     @Override
     public boolean equals(Object x) {
-        // Check if the board equals an input Board object
+        // Check if the board equals an input Board object            if(x){
+//
+//            }
         if (x == this) return true;
         if (x == null) return false;
         if (!(x instanceof Board)) return false;
@@ -213,7 +282,9 @@ public class Board {
 
     public static void main(String[] args) {
         // DEBUG - Your solution can include whatever output you find useful
-        int[][] initState = {{1, 2, 3}, {4, 0, 6}, {7, 8, 5}};
+        int[][] initState = {{1, 2, 3}, {4, 5, 6}, {7, 0, 5}};
+        int[][] initState2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
+        visualize(initState2);
         Board board = new Board(initState);
 
         System.out.println("Size: " + board.size());
