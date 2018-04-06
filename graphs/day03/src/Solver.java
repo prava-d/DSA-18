@@ -41,6 +41,11 @@ public class Solver {
             if (!(s instanceof State)) return false;
             return ((State) s).board.equals(this.board);
         }
+
+        public int compareTo(State s){
+            return s.moves - moves; // SHOULD THIS BE MOVEs - S.MOVES?
+        }
+
     }
 
 
@@ -59,14 +64,15 @@ public class Solver {
      * and a identify the shortest path to the the goal state
      */
     public Solver(Board initial) {
+        State initialState = new State(initial, 0, null );
         if(isSolvable(initial)){
-            ArrayList<Board> open = new ArrayList<Board>();
-            ArrayList<Board> closed = new ArrayList<Board>();
-            open.add(initial);
+            ArrayList<State> open = new ArrayList<State>();
+            ArrayList<State> closed = new ArrayList<State>();
+            open.add(initialState);
 
             while(open.size()> 0){
-                Board curr = open.remove(0);
-                for(Board neighbor : curr.neighbors()){
+                State curr = open.remove(0);
+                for(Board neighbor : curr.board.neighbors()){
                     if(neighbor.isGoal()){
                         //  This is the solution
                         return;
@@ -74,20 +80,19 @@ public class Solver {
                         int mDist = neighbor.manhattan();
                         boolean ignore = false;
                         for(int b = 0; b < open.size(); b++){
-                            if(neighbor.equals(open.get(b)) && open.get(b).manhattan() < mDist){
+                            if(neighbor.equals(open.get(b)) && open.get(b).board.manhattan() < mDist){
                                 //Ignore
                                 ignore = true;
                             }
                         }
                         for(int b = 0; b < closed.size(); b++){
-                            if(neighbor.equals(closed.get(b)) && closed.get(b).manhattan() < mDist){
+                            if(neighbor.equals(closed.get(b)) && closed.get(b).board.manhattan() < mDist){
                                 //Ignore
                                 ignore = true;
                             }
                         }
                         if(!ignore){
-                            open.add(neighbor);
-
+                            open.add(new State(neighbor,curr.moves+1, curr);
                         }
 
                     }
@@ -116,6 +121,7 @@ public class Solver {
      */
     public Iterable<Board> solution() {
         // TODO: Your code here
+
         return null;
     }
 
