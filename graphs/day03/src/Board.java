@@ -28,34 +28,16 @@ public class Board {
         tiles = b;
         n = tiles.length^2;
         setTarget();
-<<<<<<< HEAD
-        // TODO: DONE?
-=======
     }
 
     public void setTarget() {
-        for(int i = 0; i<size(); i++){
-            for(int p = 0; p <size(); p++){
+        for (int i = 0; i < size(); i++) {
+            for (int p = 0; p < size(); p++) {
                 // checks all the rows: i
                 // with each colm: p
 
-                if(tiles[i][p] == 0){
-                    this.target[0]= i;
-                    this.target[1] = p;
-                }
-            }
-        }
->>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
-    }
-
-    public void setTarget() {
-        for(int i = 0; i<size(); i++){
-            for(int p = 0; p <size(); p++){
-                // checks all the rows: i
-                // with each colm: p
-
-                if(tiles[i][p] == 0){
-                    this.target[0]= i;
+                if (tiles[i][p] == 0) {
+                    this.target[0] = i;
                     this.target[1] = p;
                 }
             }
@@ -75,8 +57,7 @@ public class Board {
     /*
      * Sum of the manhattan distances between the tiles and the goal
      */
-    public int manhattan() {
-<<<<<<< HEAD
+    public int manhattan(){
         // TODO: DONE?
         int sumDist = 0;
         for (int i = 0; i < tiles.length; i++) {
@@ -90,20 +71,12 @@ public class Board {
             }
         }
         return sumDist;
-=======
-        // TODO:int[][] target Your code here
-        return 0;
->>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
     }
 
     /*
      * Compare the current state to the goal state
      */
     public boolean isGoal() {
-<<<<<<< HEAD
-        // TODO: DONE?
-=======
->>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
         // for every value in tiles, check that the one to the right is in order
         int[][] d = tiles;
         int count = 1;
@@ -124,7 +97,6 @@ public class Board {
             }
         }
         return true;
-<<<<<<< HEAD
     }
 
     public int numInversions(int[] arr) {
@@ -150,8 +122,6 @@ public class Board {
         }
 
         return oneDarr;
-=======
->>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
     }
 
     /*
@@ -169,8 +139,6 @@ public class Board {
             return false;
         }
     }
-
-
 
     public static void visualize(int[][] b){
         int s = b.length;
@@ -190,58 +158,43 @@ public class Board {
      * Return all neighboring boards in the state tree
      */
     public Iterable<Board> neighbors() {
-<<<<<<< HEAD
-        // TODO: DONE?
-=======
->>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
-        // Need a way to get the target node
+            // Need a way to get the target node
 
-        // make a list of boards
-        ArrayList<Board> boardsNeigh = new ArrayList<Board>();
-        int numNeighbors =0;//
-        int[] movements = {1,-1,1,-1};
-        for(int i = 0; i < 4; i++) {
-            int x = target[0];
-            int y = target[1];
-            if(i < 2){
-                if (x + movements[i] < size() && x + movements[i] >= 0){
-                    // This is inbounds
-                    //FIND NEGHBOR
-                    int[][] tempBoard = copyOf(tiles);
-                    tempBoard[x][y] = tempBoard[x + movements[i]][y];
-                    tempBoard[x + movements[i]][y] = 0;
-                    Board Tboard = new Board(tempBoard);
-                    boardsNeigh.add(Tboard);
+            // make a list of boards
+            ArrayList<Board> boardsNeigh = new ArrayList<Board>();
+            int numNeighbors = 0;//
+            int[] movements = {1, -1, 1, -1};
+            for (int i = 0; i < 4; i++) {
+                int x = target[0];
+                int y = target[1];
+                if (i < 2) {
+                    if (x + movements[i] < size() && x + movements[i] >= 0) {
+                        // This is inbounds
+                        //FIND NEGHBOR
+                        int[][] tempBoard = copyOf(tiles);
+                        tempBoard[x][y] = tempBoard[x + movements[i]][y];
+                        tempBoard[x + movements[i]][y] = 0;
+                        Board Tboard = new Board(tempBoard);
+                        boardsNeigh.add(Tboard);
+                    }
+                } else {
+                    if (y + movements[i] < size() && y + movements[i] >= 0) {
+                        // This is inbounds
+                        int[][] tempBoard = copyOf(tiles);
+                        tempBoard[x][y] = tempBoard[x][y + movements[i]];
+                        tempBoard[x][y + movements[i]] = 0;
+                        Board Tboard = new Board(tempBoard);
+                        boardsNeigh.add(Tboard);
+                    }
                 }
-            }else{
-                if (y + movements[i] < size() && y + movements[i] >= 0){
-                    // This is inbounds
-                    int[][] tempBoard = copyOf(tiles);
-                    tempBoard[x][y] = tempBoard[x][y + movements[i] ];
-                    tempBoard[x][y + movements[i] ] = 0;
-                    Board Tboard = new Board(tempBoard);
-                    boardsNeigh.add(Tboard);
-                }
+
             }
-
-        }
 //        // For each board, make a copy, change the one piece, move on
 //        Iterable<Board> OtherBoards =  boardsNeigh.iterator();
 //
 
-        return boardsNeigh;
-<<<<<<< HEAD
-
-    }
-
-    private static int[][] copyOf(int[][] A) {
-        int[][] B = new int[A.length][A[0].length];
-        for (int i = 0; i < A.length; i++)
-            System.arraycopy(A[i], 0, B[i], 0, A[0].length);
-        return B;
-=======
->>>>>>> 64763d5f56f2de004be79a9383d4fa5668b36699
-    }
+            return boardsNeigh;
+        }
 
     /*
      * Check if this board equals a given board state
