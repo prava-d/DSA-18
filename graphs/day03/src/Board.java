@@ -114,9 +114,10 @@ public class Board {
 
     // remove parameters
     public int[] twoDtooneD (int[][] arr) {
-        int [] oneDarr = new int [arr.length^2];
+        int [] oneDarr = new int [(arr.length * arr.length)];
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length; j++) {
+                int u = oneDarr.length;
                 oneDarr[(i * arr.length) + j] = arr[i][j];
             }
         }
