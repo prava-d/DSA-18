@@ -28,6 +28,7 @@ public class Solver {
 
 
 
+
         public State(Board board, int moves, State prev) {
             this.board = board;
             this.moves = moves;
@@ -77,6 +78,7 @@ public class Solver {
                 State curr = open.remove(0);
                 for(Board neighbor : curr.board.neighbors()){
                     if(neighbor.isGoal()){
+                        solutionState = curr;
                         //  This is the solution
                         return;
                     }else{
@@ -120,9 +122,16 @@ public class Solver {
      * Return the sequence of boards in a shortest solution, null if unsolvable
      */
     public Iterable<Board> solution() {
-        // TODO: Your code here
+        ArrayList<Board> solutionStates = new ArrayList<Board>();
+        State currState = solutionState;
 
-        return null;
+        while(currState.prev != null){
+            solutionStates.add(currState.board);
+            currState = currState.prev;
+        }
+
+        Collections.reverse(solutionStates);
+        return solutionStates;
     }
 
     public State find(Iterable<State> iter, Board b) {
