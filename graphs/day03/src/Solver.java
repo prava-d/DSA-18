@@ -10,7 +10,8 @@ public class Solver {
     public int minMoves = -1;
     private State solutionState;
     private boolean solved = false;
-    //private State root;
+    private State initialState;
+
 
     /**
      * State class to make the cost calculations simple
@@ -22,6 +23,8 @@ public class Solver {
         private int moves; // equal to g-cost in A*
         public int cost; // equal to f-cost in A*
         private State prev;
+
+
 
 
 
@@ -64,8 +67,8 @@ public class Solver {
      * and a identify the shortest path to the the goal state
      */
     public Solver(Board initial) {
-        State initialState = new State(initial, 0, null );
-        if(isSolvable(initial)){
+        initialState = new State(initial, 0, null );
+        if(isSolvable()){
             ArrayList<State> open = new ArrayList<State>();
             ArrayList<State> closed = new ArrayList<State>();
             open.add(initialState);
@@ -92,7 +95,7 @@ public class Solver {
                             }
                         }
                         if(!ignore){
-                            open.add(new State(neighbor,curr.moves+1, curr);
+                            open.add(new State(neighbor,curr.moves+1, curr));
                         }
 
                     }
@@ -107,12 +110,9 @@ public class Solver {
      * Is the input board a solvable state
      * Research how to check this without exploring all states
      */
-    public boolean isSolvable(Board initial) {
-        if(initial.solvable()){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean isSolvable() {
+
+        return initialState.board.solvable();
 
     }
 
