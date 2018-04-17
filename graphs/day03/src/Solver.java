@@ -70,6 +70,7 @@ public class Solver {
     public boolean solve(){
 
 
+<<<<<<< HEAD
         PriorityQueue<State> open = new PriorityQueue<>();
         //PriorityQueue<State> every = new PriorityQueue<State>();
         ArrayList<State> closed = new ArrayList<>();
@@ -77,14 +78,28 @@ public class Solver {
         boolean ignore;
 
         open.add(this.solutionState);
+=======
+        PriorityQueue<State> minCosts = new PriorityQueue<>();
+        //PriorityQueue<State> every = new PriorityQueue<State>();
+        ArrayList<State> every = new ArrayList<>();
+        State addState;
+        boolean ignore;
+
+        minCosts.add(this.solutionState);
+>>>>>>> 00acb4af0d77f566d0b53730ebb47d6eeac3bb5d
 
         if(!isSolvable()){
             solved = false;
             return false;
         }
 
+<<<<<<< HEAD
         while(!open.isEmpty()) {
             State temp = open.poll();
+=======
+        while(!minCosts.isEmpty()) {
+            State temp = minCosts.poll();
+>>>>>>> 00acb4af0d77f566d0b53730ebb47d6eeac3bb5d
             for (Board b: temp.board.neighbors()) {
                 addState = new State(b,temp.moves+1, temp);
                 if(b.isGoal()){
@@ -95,24 +110,39 @@ public class Solver {
                 }
                 ignore = false;
 
+<<<<<<< HEAD
                 for (State s: open) {
+=======
+                for (State s: minCosts) {
+>>>>>>> 00acb4af0d77f566d0b53730ebb47d6eeac3bb5d
                     if(s.equals(addState) && s.cost <= addState.cost){
                         ignore = true;
                         break;
                     }
                 }
 
+<<<<<<< HEAD
                 for (State s: closed){
+=======
+                for (State s: every){
+>>>>>>> 00acb4af0d77f566d0b53730ebb47d6eeac3bb5d
                     if(s.equals(addState) && s.cost <= addState.cost){
                         ignore = true;
                         break;
                     }
                 }
                 if(!ignore) {
+<<<<<<< HEAD
                     open.add(addState);
                 }
             }
             closed.add(temp);
+=======
+                    minCosts.add(addState);
+                }
+            }
+            every.add(temp);
+>>>>>>> 00acb4af0d77f566d0b53730ebb47d6eeac3bb5d
 
         }
         return false;
