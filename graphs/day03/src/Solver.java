@@ -70,21 +70,21 @@ public class Solver {
     public boolean solve(){
 
 
-        PriorityQueue<State> minCosts = new PriorityQueue<>();
+        PriorityQueue<State> open = new PriorityQueue<>();
         //PriorityQueue<State> every = new PriorityQueue<State>();
-        ArrayList<State> every = new ArrayList<>();
+        ArrayList<State> closed = new ArrayList<>();
         State addState;
         boolean ignore;
 
-        minCosts.add(this.solutionState);
+        open.add(this.solutionState);
 
         if(!isSolvable()){
             solved = false;
             return false;
         }
 
-        while(!minCosts.isEmpty()) {
-            State temp = minCosts.poll();
+        while(!open.isEmpty()) {
+            State temp = open.poll();
             for (Board b: temp.board.neighbors()) {
                 addState = new State(b,temp.moves+1, temp);
                 if(b.isGoal()){
@@ -95,24 +95,24 @@ public class Solver {
                 }
                 ignore = false;
 
-                for (State s: minCosts) {
+                for (State s: open) {
                     if(s.equals(addState) && s.cost <= addState.cost){
                         ignore = true;
                         break;
                     }
                 }
 
-                for (State s: every){
+                for (State s: closed){
                     if(s.equals(addState) && s.cost <= addState.cost){
                         ignore = true;
                         break;
                     }
                 }
                 if(!ignore) {
-                    minCosts.add(addState);
+                    open.add(addState);
                 }
             }
-            every.add(temp);
+            closed.add(temp);
 
         }
         return false;
